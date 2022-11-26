@@ -15,7 +15,7 @@ int print_pointer(va_lsit types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	char extra_c = 0, padd = ' ';
-	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; 
+	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1;
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
@@ -47,7 +47,8 @@ int print_pointer(va_lsit types, char buffer[],
 
 	ind++;
 
-	return (write_pointer(buffer, ind, length, width, flags, padd, extra_c, padd_start));
+	return (write_pointer(buffer, ind, length,
+				width, flags, padd, extra_c, padd_start));
 }
 /****************** PRINT NON PRINTABLE ******************/
 /**
@@ -92,9 +93,9 @@ int print_non_printable(va_list types, char buffer[],
 /************** PRINT REVERSE *************/
 /**
  * print_reverse - prints reverse string
- * @type: list a of argument
+ * @types: list a of argument
  * @buffer: buffer array to handle print
- * @flags: calculate active flags
+ * @flag: calculate active flags
  * @width: get width
  * @precision: precision specifiction
  * @size: size specifier
@@ -103,7 +104,7 @@ int print_non_printable(va_list types, char buffer[],
 int print_reverse(va_list types, char buffer[],
 		int flag, int width, int precision, int size)
 {
-	char ^str;
+	char *str;
 	int i, count = 0;
 
 	UNUSED(buffer);
@@ -119,9 +120,9 @@ int print_reverse(va_list types, char buffer[],
 
 		str = ")Null(";
 	}
-	for (i = o; str[i]; i++)
+	for (i = 0; str[i]; i++)
 		;
-	for (i = i -1; i >= 0; i--)
+	for (i = i - 1; i >= 0; i--)
 	{
 		char z = str[i];
 
